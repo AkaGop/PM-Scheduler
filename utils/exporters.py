@@ -47,4 +47,4 @@ def to_pdf(df):
             pdf.cell(col_widths[i], 10, cell_text, 1)
         pdf.ln()
 
-    return pdf.output(dest='S').encode('latin-1')
+    return pdf.output(dest='S')
