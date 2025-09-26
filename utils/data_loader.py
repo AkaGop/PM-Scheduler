@@ -35,3 +35,7 @@ def save_maintenance_log(df):
 def save_frequencies(df):
     """Saves the frequencies dataframe to the excel file."""
     df.to_excel(os.path.join(DATA_DIR, "frequencies.xlsx"), index=False)
+
+def save_users(df):
+    """Saves the users dataframe to the excel file."""
+    df.to_excel(os.path.join(DATA_DIR, "users.xlsx"), index=False)

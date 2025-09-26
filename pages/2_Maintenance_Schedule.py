@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from utils.data_loader import load_equipment, save_equipment, load_maintenance_log, save_maintenance_log
-from utils.exporters import to_excel, to_csv, to_pdf
+from utils.exporters import to_excel, to_csv
 from datetime import datetime
 
 st.set_page_config(
@@ -58,12 +58,6 @@ def show_maintenance_schedule():
             data=to_csv(filtered_df),
             file_name=f"maintenance_schedule_{datetime.now().strftime('%Y%m%d')}.csv",
             mime="text/csv",
-        )
-        st.sidebar.download_button(
-            label="Export to PDF",
-            data=to_pdf(filtered_df),
-            file_name=f"maintenance_schedule_{datetime.now().strftime('%Y%m%d')}.pdf",
-            mime="application/pdf",
         )
 
     # Display Tasks

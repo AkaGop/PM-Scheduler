@@ -1,12 +1,17 @@
 import streamlit as st
 import pandas as pd
+import hashlib
 from utils.data_loader import load_users, load_roles
+from utils.ui_helpers import load_css
 
 st.set_page_config(
     page_title="Semiconductor Maintenance Scheduler",
     page_icon="🛠️",
     layout="wide"
 )
+
+# Load custom CSS
+load_css("style.css")
 
 def login():
     """Displays the login page and handles user authentication."""
@@ -19,8 +24,9 @@ def login():
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        # In a real app, use proper password hashing and verification
-        user = users_df[(users_df['Username'] == username) & (users_df['PasswordHash'] == password)]
+        # Hash the entered password for comparison
+        password_hash = hashlib.sha256(password.encode()).hexdigest()
+        user = users_df[(users_df['Username'] == username) & (users_df['PasswordHash'] == password_hash)]
 
         if not user.empty:
             st.session_state['logged_in'] = True
@@ -46,15 +52,11 @@ def show_welcome_page():
             del st.session_state[key]
         st.rerun()
 
-    st.title("Welcome to the Maintenance Scheduler")
-    st.write("Please navigate to a page using the sidebar.")
-
-    st.write("### Your Permissions:")
-    st.write(st.session_state['user_info']['Permissions'])
+    # Redirect to the main dashboard page
+    st.switch_page("pages/1_Dashboard.py")
 
 
 if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
     login()
 else:
     show_welcome_page()
-    st.balloons()

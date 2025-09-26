@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-def check_for_notifications(equipment_df, users_df):
+def check_for_notifications(equipment_df):
     """
     Checks for overdue and upcoming PMs and returns notification messages.
-    In a real app, this would trigger emails.
+    In a real app, this could be expanded to trigger emails.
     """
     notifications = []
 
