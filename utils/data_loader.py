@@ -39,3 +39,7 @@ def save_frequencies(df):
 def save_users(df):
     """Saves the users dataframe to the excel file."""
     df.to_excel(os.path.join(DATA_DIR, "users.xlsx"), index=False)
+
+def load_modules():
+    """Loads modules from the excel file."""
+    return pd.read_excel(os.path.join(DATA_DIR, "modules.xlsx"))
