@@ -43,3 +43,7 @@ def save_users(df):
 def load_modules():
     """Loads modules from the excel file."""
     return pd.read_excel(os.path.join(DATA_DIR, "modules.xlsx"))
+
+def save_modules(df):
+    """Saves the modules dataframe to the excel file."""
+    df.to_excel(os.path.join(DATA_DIR, "modules.xlsx"), index=False)
